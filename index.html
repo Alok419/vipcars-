@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capricorn Coffee Help Center</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            color: white;
+        }
+
+        /* Background and Centering */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&q=80&w=2070'); 
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .logo {
+            width: 150px;
+            margin-bottom: 20px;
+            border: 2px solid white;
+            padding: 10px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        /* Search Bar Design */
+        .search-container {
+            display: flex;
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 15px 25px;
+            border-radius: 30px 0 0 30px;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            background-color: #d48e6b; /* Matching the orange/brown from your image */
+            border: none;
+            padding: 15px 25px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* CUSTOM AGENTFORCE BUTTON */
+        .chat-trigger-btn {
+            background-color: transparent;
+            border: 2px solid #d48e6b;
+            color: #d48e6b;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .chat-trigger-btn:hover {
+            background-color: #d48e6b;
+            color: white;
+            box-shadow: 0 0 15px rgba(212, 142, 107, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-section">
+        <div class="logo">CAPRICORN<br><small>Coffee</small></div>
+        
+        <h1>What can we help you with?</h1>
+
+        <div class="search-container">
+            <input type="text" placeholder="Search the help center...">
+            <button class="search-btn">🔍</button>
+        </div>
+
+        <button class="chat-trigger-btn" onclick="launchAgentforce()">
+            Chat with our Agent
+        </button>
+    </div>
+
+    <script type='text/javascript'>
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'en_US'; 
+
+                // KEY STEP: This hides the standard floating bubble so you can use your own button
+                embeddedservice_bootstrap.settings.displayHelpButton = false; 
+
+                embeddedservice_bootstrap.init(
+                    '00DBi000003OeAg',
+                    'VIPCars_Service_agent',
+                    'https://enterprise-force-4968--dev.sandbox.my.site.com/ESWVIPCarsServiceagent1769208537342',
+                    {
+                        scrt2URL: 'https://enterprise-force-4968--dev.sandbox.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        };
+
+        // This function is called by your centered button
+        function launchAgentforce() {
+            embeddedservice_bootstrap.util.launchChat();
+        }
+    </script>
+    <script type='text/javascript' src='https://enterprise-force-4968--dev.sandbox.my.site.com/ESWVIPCarsServiceagent1769208537342/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+    </body>
+</html>
