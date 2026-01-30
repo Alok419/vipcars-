@@ -99,30 +99,30 @@
         </div>
 
         <button class="chat-trigger-btn" onclick="launchAgentforce()">
-            Chat with our Agent
+            Chat with our Agents
         </button>
     </div>
 
     <script type='text/javascript'>
-        function initEmbeddedMessaging() {
-            try {
-                embeddedservice_bootstrap.settings.language = 'en_US'; 
+       function initEmbeddedMessaging() {
+    try {
+        embeddedservice_bootstrap.settings.language = 'en_US'; 
 
-                // KEY STEP: This hides the standard floating bubble so you can use your own button
-                embeddedservice_bootstrap.settings.displayHelpButton = false; 
+        // ADD THIS LINE: It hides the floating bubble at startup
+        embeddedservice_bootstrap.settings.hideChatButtonOnLoad = true; 
 
-                embeddedservice_bootstrap.init(
-                    '00DBi000003OeAg',
-                    'VIPCars_Service_agent',
-                    'https://enterprise-force-4968--dev.sandbox.my.site.com/ESWVIPCarsServiceagent1769208537342',
-                    {
-                        scrt2URL: 'https://enterprise-force-4968--dev.sandbox.my.salesforce-scrt.com'
-                    }
-                );
-            } catch (err) {
-                console.error('Error loading Embedded Messaging: ', err);
+        embeddedservice_bootstrap.init(
+            '00DBi000003OeAg',
+            'VIPCars_Service_agent',
+            'https://enterprise-force-4968--dev.sandbox.my.site.com/ESWVIPCarsServiceagent1769208537342',
+            {
+                scrt2URL: 'https://enterprise-force-4968--dev.sandbox.my.salesforce-scrt.com'
             }
-        };
+        );
+    } catch (err) {
+        console.error('Error loading Embedded Messaging: ', err);
+    }
+};
 
         // This function is called by your centered button
         function launchAgentforce() {
