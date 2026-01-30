@@ -126,8 +126,15 @@
 
         // This function is called by your centered button
         function launchAgentforce() {
-            embeddedservice_bootstrap.util.launchChat();
-        }
+    // Note: Enhanced Messaging uses 'utilAPI' instead of 'util'
+    if (window.embeddedservice_bootstrap && window.embeddedservice_bootstrap.utilAPI) {
+        embeddedservice_bootstrap.utilAPI.launchChat()
+            .then(() => { console.log("Chat launched!"); })
+            .catch((err) => { console.error("Launch failed", err); });
+    } else {
+        alert("The Agent is still getting ready. Please try again in a second.");
+    }
+}
     </script>
     <script type='text/javascript' src='https://enterprise-force-4968--dev.sandbox.my.site.com/ESWVIPCarsServiceagent1769208537342/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
     </body>
